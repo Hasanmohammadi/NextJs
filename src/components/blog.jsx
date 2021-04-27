@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import blogStyles from "../styles/blog.module.css";
+import blogStyles from "../styles/blogs.module.css";
 import { cdnHandlerFn } from "../helpers/cdnHandler";
 import { gregorian_to_jalali } from "../helpers/convertDate";
 
@@ -10,9 +10,9 @@ const Blog = ({ blog }) => {
   const day = blog.createdAt.slice(8, 10);
 
   return (
-    <Link href="/">
-      <a className={blogStyles.link}>
-        <div className={blogStyles.blog} key={blog.id}>
+    <Link href={`/${blog.id}`} >
+      <a className={blogStyles.link} >
+        <div className={blogStyles.blog} >
           <img
             src={cdnHandlerFn(blog.cover)}
             alt={blog.title}

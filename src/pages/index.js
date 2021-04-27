@@ -1,30 +1,26 @@
-import Head from "next/head";
-import styles from "../styles/Home.module.css";
-
-import { useState } from "react";
-import { POST_URL } from "../url";
-
 import Blog from "../components/blog";
+import styles from "../styles/Home.module.css";
+import { POSTS_URL } from "../url";
 
-export default function Home({ blogsApi }) {
-  const [blogs, setBlogs] = useState(blogsApi);
+export default function Home({ posts }) {
+  console.log(posts);
 
   return (
     <div className={styles.container}>
-      {blogs.map((blog) => {
-        return <Blog blog={blog} />;
-      })}
+      {posts.map((post) => (
+        <Blog blog={post} />
+      ))}
     </div>
   );
 }
 
 export const getServerSideProps = async (ctx) => {
-  const response = await fetch(POST_URL);
+  const response = await fetch(POSTS_URL);
   const data = await response.json();
 
   return {
     props: {
-      blogsApi: data.posts,
+      posts: data.posts,
     },
   };
 };
