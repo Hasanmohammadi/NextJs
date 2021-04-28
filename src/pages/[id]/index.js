@@ -1,7 +1,6 @@
-import { DETAILLE_POST_URL } from "../../url";
-import postStyle from "../../styles/post.module.css";
 import { cdnHandlerFn } from "../../helpers/cdnHandler";
-import Link from "next/link";
+import postStyle from "../../styles/post.module.css";
+import { DETAILLE_POST_URL } from "../../url";
 
 const Detaille = ({ post }) => {
   return (
@@ -9,7 +8,7 @@ const Detaille = ({ post }) => {
       <div className={postStyle.container}>
         <h4 className={postStyle.description}>{post.description}</h4>
         <h2>{post.title}</h2>
-        <img src={cdnHandlerFn(post.cover)} alt={post.title} />
+        <img src={cdnHandlerFn(post.cover)} alt={post.title} width={700} />
         <div
           dangerouslySetInnerHTML={{
             __html: post.content.replace(/href/g, "target='_blank' href"),
@@ -34,7 +33,7 @@ export const getServerSideProps = async (context) => {
   const { id } = context.params;
   const response = await fetch(`${DETAILLE_POST_URL}${id}`);
   const data = await response.json();
-  console.log(data);
+  console.log("post component");
 
   return {
     props: {

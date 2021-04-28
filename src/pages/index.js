@@ -15,7 +15,7 @@ export default function Home({ posts, pagination }) {
 
     router.push({
       pathname: "/",
-      query: { page: pageNumber, tag: [10,12,11] },
+      query: { page: pageNumber},
     });
   }
 
