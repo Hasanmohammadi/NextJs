@@ -7,7 +7,7 @@ import Blog from "../components/blog";
 import styles from "../styles/Home.module.css";
 import { POSTS_URL } from "../url";
 
-export default function Home({ posts }) {
+export default function Home({ posts, pagination }) {
   const router = useRouter();
   function onChange(pageNumber) {
     console.log("Page: ", pageNumber);
@@ -15,7 +15,7 @@ export default function Home({ posts }) {
 
     router.push({
       pathname: "/",
-      query: { page: pageNumber },
+      query: { page: pageNumber, tag: [10,12,11] },
     });
   }
 
@@ -29,7 +29,8 @@ export default function Home({ posts }) {
         <Pagination
           showQuickJumper
           defaultCurrent={1}
-          total={600}
+          current={pagination.page}
+          total={pagination.totalCount}
           onChange={onChange}
         />
       </div>
@@ -38,13 +39,16 @@ export default function Home({ posts }) {
 }
 
 export const getServerSideProps = async (context) => {
-  const { page } = context.query;
+  const { page = 1 } = context.query;
+
   const response = await fetch(`${POSTS_URL}${page}`);
+
   const data = await response.json();
 
   return {
     props: {
       posts: data.posts,
+      pagination: data.pagination,
     },
   };
 };

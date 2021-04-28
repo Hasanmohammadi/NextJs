@@ -10,9 +10,16 @@ const Blog = ({ blog }) => {
   const day = blog.createdAt.slice(8, 10);
 
   return (
-    <Link href={`/${blog.id}`} >
-      <a className={blogStyles.link} >
-        <div className={blogStyles.blog} >
+    <Link
+      href={{
+        pathname: `/[id]`,
+        query: {
+          id: blog.id,
+        },
+      }}
+    >
+      <a className={blogStyles.link}>
+        <div className={blogStyles.blog}>
           <img
             src={cdnHandlerFn(blog.cover)}
             alt={blog.title}
