@@ -1,6 +1,6 @@
-import { cdnHandlerFn } from "../../helpers/cdnHandler";
-import postStyle from "../../styles/post.module.css";
-import { DETAILLE_POST_URL } from "../../url";
+import { cdnHandlerFn } from '../../helpers/cdnHandler';
+import postStyle from '../../styles/post.module.css';
+import { DETAILLE_POST_URL } from '../../url';
 
 const Detaille = ({ post }) => {
   return (
@@ -33,12 +33,12 @@ export const getServerSideProps = async (context) => {
   const { id } = context.params;
   const response = await fetch(`${DETAILLE_POST_URL}${id}`);
   const data = await response.json();
-  console.log("post component");
+  console.log('post component');
 
   return {
     props: {
       post: data,
-      title : data.title
+      title: data.title,
     },
   };
 };
