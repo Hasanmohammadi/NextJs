@@ -5,17 +5,16 @@ import "antd/dist/antd.css";
 import { Pagination } from "antd";
 import Blog from "../components/blog";
 import styles from "../styles/Home.module.css";
-import { POSTS_URL } from "../url";
+import { POSTS_URL } from "~src/url";
 
 export default function Home({ posts, pagination }) {
   const router = useRouter();
   function onChange(pageNumber) {
     console.log("Page: ", pageNumber);
-    // router.push(`?page=${pageNumber}`);
 
     router.push({
       pathname: "/",
-      query: { page: pageNumber},
+      query: { page: pageNumber },
     });
   }
 
