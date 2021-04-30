@@ -1,19 +1,20 @@
 // import { useHistory } from "react-router-dom";
-import { useRouter } from "next/router";
+import { useRouter } from 'next/router';
 
-import "antd/dist/antd.css";
-import { Pagination } from "antd";
-import Blog from "../components/blog";
-import styles from "../styles/Home.module.css";
-import { POSTS_URL } from "~src/url";
+import 'antd/dist/antd.css';
+import { Pagination } from 'antd';
+import Blog from '~components/blog';
+import styles from '~styles/Home.module.css';
+import { POSTS_URL } from '~src/url';
 
 export default function Home({ posts, pagination }) {
   const router = useRouter();
+
   function onChange(pageNumber) {
-    console.log("Page: ", pageNumber);
+    console.log('Page: ', pageNumber);
 
     router.push({
-      pathname: "/",
+      pathname: '/',
       query: { page: pageNumber },
     });
   }
